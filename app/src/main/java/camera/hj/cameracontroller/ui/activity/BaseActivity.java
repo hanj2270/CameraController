@@ -1,10 +1,9 @@
-package camera.hj.cameracontroller.activity;
+package camera.hj.cameracontroller.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.Window;
 
 import butterknife.ButterKnife;
 import camera.hj.cameracontroller.utils.AppManager;

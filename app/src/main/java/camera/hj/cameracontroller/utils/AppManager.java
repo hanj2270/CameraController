@@ -8,7 +8,7 @@ import android.widget.Toast;
 import java.util.Stack;
 
 import camera.hj.cameracontroller.CameraApplication;
-import camera.hj.cameracontroller.activity.MainActivity;
+import camera.hj.cameracontroller.ui.activity.MainActivity;
 /**
  * 统一管理activity的内存，支持在“一键退出”中清除堆栈中的activity
  *

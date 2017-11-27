@@ -3,7 +3,7 @@ package camera.hj.cameracontroller.constant;
 import android.util.DisplayMetrics;
 
 import camera.hj.cameracontroller.CameraApplication;
-import camera.hj.cameracontroller.activity.MainActivity;
+import camera.hj.cameracontroller.ui.activity.MainActivity;
 
 /**
  * Created by NC040 on 2017/11/19.
