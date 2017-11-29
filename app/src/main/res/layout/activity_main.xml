@@ -28,9 +28,9 @@
 
     <ImageView
         android:id="@+id/square"
-        android:layout_marginLeft="95dp"
+        android:layout_marginLeft="112dp"
         android:layout_marginTop="40dp"
-        android:src="@drawable/white"
+        android:src="@drawable/face_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />

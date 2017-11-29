@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Size;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -63,9 +64,10 @@ public class MainActivity extends BaseActivity implements FaceCalculator.FaceCal
     @Override
     public void loadData() {
         initSettings();
-        FaceCalculator faceCalculator=new FaceCalculator();
+        FaceCalculator faceCalculator=FaceCalculator.getInstance();
         faceCalculator.setOnFaceCalListener(this);
         cameraManager=new CameraManager(this,cameraSurface,faceCalculator);
+        Log.d("###count###","queue size is init");
     }
 
     private void initSettings() {
@@ -93,11 +95,11 @@ public class MainActivity extends BaseActivity implements FaceCalculator.FaceCal
             if(result){
                 result_text.setText(getString(R.string.FoundFace));
                 result_text.setTextColor(getColor(R.color.green));
-                square.setImageDrawable(getDrawable(R.drawable.green));
+                square.setImageDrawable(getDrawable(R.drawable.face_green));
             }else{
                 result_text.setText(getString(R.string.NoFace));
                 result_text.setTextColor(getColor(R.color.red));
-                square.setImageDrawable(getDrawable(R.drawable.green));
+                square.setImageDrawable(getDrawable(R.drawable.face_white));
             }
         }
     }

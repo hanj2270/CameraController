@@ -1,5 +1,6 @@
 package camera.hj.cameracontroller.decoder;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
@@ -16,8 +17,23 @@ public class FaceCalculator extends Thread {
     FaceCalListener mFaceCalListener;
 
 
+    private static FaceCalculator ourInstance = null;
+
+    private FaceCalculator() {
+    }
+
+    public synchronized static FaceCalculator getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new FaceCalculator();
+        }
+        return ourInstance;
+    }
+
+
+
     @Override
     public void run() {
+        new BitmapGC().start();
         while(true){
             //目前为持续循环，如果运算效率较高，这里采用每秒执行一次
             //Thread.sleep(500);
@@ -71,5 +87,23 @@ public class FaceCalculator extends Thread {
 
      public interface FaceCalListener{
         public void onChange(boolean CalResult);
+    }
+
+    private class BitmapGC extends Thread {
+        @Override
+        public void run() {
+            while(true){
+                //50m内存最多保存80张bitmap，每2s检查一次，如果超过60张执行一次全局gc,避免内存泄漏
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(DataQueue.size()>60){
+                    BitmapGC(getAllBitmap(DataQueue.size()));
+                    System.gc();
+                }
+            }
+        }
     }
 }
