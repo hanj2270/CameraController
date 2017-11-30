@@ -95,7 +95,7 @@ public class FaceCalculator extends Thread {
             while(true){
                 //50m内存最多保存80张bitmap，每2s检查一次，如果超过60张执行一次全局gc,避免内存泄漏
                 try {
-                    Thread.sleep(2000);
+                    this.wait(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
