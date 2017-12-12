@@ -20,6 +20,7 @@ public class WorkLine {
     private static WorkLine ourInstance = null;
 
     private WorkLine() {
+        new BitmapGCThread().start();
     }
 
     public synchronized static WorkLine getInstance() {
@@ -42,7 +43,13 @@ public class WorkLine {
         }
     }
 
-    public Bitmap getSource(Bitmap data){
+    public void addProducts(ArrayList<Bitmap> bitmaps){
+        for(Bitmap b:bitmaps){
+            ProductDataQueue.offer(b);
+        }
+    }
+
+    public Bitmap getSource(){
         try {
             return ResDataQueue.take();
         } catch (InterruptedException e) {
@@ -69,6 +76,10 @@ public class WorkLine {
     }
 
 
+    public boolean ready(){
+        return ProductDataQueue.size()>0;
+    }
+
     public Bitmap play(){
         try {
             if(ProductDataQueue.size()>0){
@@ -80,4 +91,35 @@ public class WorkLine {
       return null;
     }
 
+
+    private class BitmapGCThread extends Thread {
+        @Override
+        public void run() {
+            while(true){
+                //50m内存最多保存80张bitmap，每2s检查一次，如果超过60张执行一次全局gc,避免内存泄漏
+                try {
+                    this.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.d("size","ResData.size="+ResDataQueue.size());
+                Log.d("size","ProData.size="+ProductDataQueue.size());
+                if(ResDataQueue.size()+ProductDataQueue.size()>60){
+                    Log.d("size","all gc start");
+                    BitmapGC(getAllBitmap(ResDataQueue.size(),ResDataQueue));
+                    System.gc();
+                }
+            }
+        }
+    }
+
+    private void BitmapGC(Bitmap[] dataArray) {
+        for(int i=0;i<dataArray.length;i++){
+            if(!dataArray[i].isRecycled()){
+                dataArray[i].recycle();
+                dataArray[i]=null;
+            }
+        }
+        dataArray=null;
+    }
 }

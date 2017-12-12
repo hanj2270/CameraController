@@ -10,5 +10,5 @@ import android.graphics.drawable.Drawable;
 public interface IPattern {
     public int[] init(Bitmap resource,int[] eigen);
     public int[] update(Bitmap resource);
-    public Bitmap draw(Bitmap resource,int[] eigen);
+    public void draw(Bitmap resource,int[] eigen);
 }

@@ -8,10 +8,10 @@ import android.net.IpPrefix;
  */
 
 public abstract class AbstractPattern extends Thread implements IPattern {
-    private WorkLine mWorkLine;
-    public AbstractPattern(WorkLine workLine) {
+    protected WorkLine mWorkLine;
+    protected WorkingFlag flag;
+    public AbstractPattern(WorkLine workLine,WorkingFlag flag) {
         this.mWorkLine=workLine;
+        this.flag=flag;
     }
-
-
 }

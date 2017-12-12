@@ -22,8 +22,16 @@
     <SurfaceView
         android:id="@+id/cameraSurface"
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="230dp"
         android:layout_marginBottom="5dp"
+        />
+
+    <SurfaceView
+        android:id="@+id/BitmapSurface"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/cameraSurface"
         />
 
     <ImageView
@@ -33,6 +41,7 @@
         android:src="@drawable/face_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         />
 
 
@@ -44,7 +53,7 @@
         android:layout_below="@id/cameraSurface"
         android:textColor="@color/red"
         android:text="@string/NoFace"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
 </RelativeLayout>
 

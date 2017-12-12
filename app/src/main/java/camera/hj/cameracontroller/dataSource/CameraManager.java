@@ -5,25 +5,23 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ImageFormat;
 import android.graphics.Paint;
-import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
-import android.media.Image;
-import android.media.ImageReader;
-import android.os.Trace;
 import android.util.Size;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.TextureView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.List;
 
-import camera.hj.cameracontroller.decoder.FaceCalculator;
-import camera.hj.cameracontroller.ui.activity.MainActivity;
-import camera.hj.cameracontroller.ui.view.AutoFitTextureView;
+import camera.hj.cameracontroller.constant.Settings;
+import camera.hj.cameracontroller.decoder.KCFPattern;
+import camera.hj.cameracontroller.decoder.PosePattern;
+import camera.hj.cameracontroller.decoder.WorkLine;
+import camera.hj.cameracontroller.decoder.WorkingFlag;
 import camera.hj.cameracontroller.utils.SizeUtils;
 import camera.hj.cameracontroller.utils.YUVToRGBHelper;
+
+import static camera.hj.cameracontroller.utils.GCUtils.BitmapGC;
 
 /**
  * Created by NC040 on 2017/11/27.
@@ -32,22 +30,33 @@ import camera.hj.cameracontroller.utils.YUVToRGBHelper;
 public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCallback  {
    private Context ctx;
     private SurfaceView cameraSurface;
+    private SurfaceView bitmapSurface;
     private Camera camera;
     private YUVToRGBHelper mConvertHelper;
     private Size optionSize;
 
-    private FaceCalculator faceCalculator;
+    private WorkLine WorkLine;
 
-    public CameraManager(Context ctx,SurfaceView cameraSurface,FaceCalculator faceCalculator) {
+    public CameraManager(Context ctx,SurfaceView cameraSurface,WorkLine WorkLine) {
         this.ctx=ctx;
         this.cameraSurface=cameraSurface;
-        this.faceCalculator = faceCalculator;
+        this.WorkLine = WorkLine;
         Camera mCamera = Camera.open();
         Camera.Parameters p = mCamera.getParameters();
         p.setPreviewFormat(ImageFormat.NV21);
         mConvertHelper=new YUVToRGBHelper(ctx);
-        faceCalculator.start();
+        WorkingFlag wf=new WorkingFlag();
+        PosePattern posPattern=new PosePattern(WorkLine,wf);
+        KCFPattern kcfPattern=new KCFPattern(WorkLine,wf);
+        posPattern.setOnPoseListener(kcfPattern);
+        posPattern.start();
+        kcfPattern.start();
+        new PlayThread().start();
         cameraSurface.getHolder().addCallback(this);
+    }
+
+    public void setBitmapSurface(SurfaceView surface){
+        bitmapSurface=surface;
     }
 
 
@@ -97,9 +106,23 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
     @Override
     public void onPreviewFrame(byte[] bytes, Camera camera) {
         Bitmap bmpout= mConvertHelper.getBitmap(bytes);
-        faceCalculator.add(bmpout);
-//        Canvas canvas=bitmapSurface.getHolder().lockCanvas();
-//        canvas.drawBitmap(bmpout,0.0f,0.0f,new Paint());
-//        bitmapSurface.getHolder().unlockCanvasAndPost(canvas);
+        WorkLine.addSource(bmpout);
+    }
+
+    private class PlayThread extends Thread{
+        @Override
+        public void run() {
+            while(true){
+                if(WorkLine.ready()) {
+                    Bitmap temp=WorkLine.play();
+                    if(!temp.isRecycled()) {
+                        Canvas canvas = bitmapSurface.getHolder().lockCanvas();
+                        canvas.drawBitmap(temp, 0.0f, 0.0f, new Paint());
+                        bitmapSurface.getHolder().unlockCanvasAndPost(canvas);
+                        BitmapGC(temp);
+                    }
+                }
+            }
+        }
     }
 }
