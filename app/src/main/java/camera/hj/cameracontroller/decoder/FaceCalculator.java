@@ -17,17 +17,7 @@ public class FaceCalculator extends Thread {
     FaceCalListener mFaceCalListener;
 
 
-    private static FaceCalculator ourInstance = null;
 
-    private FaceCalculator() {
-    }
-
-    public synchronized static FaceCalculator getInstance() {
-        if (ourInstance == null) {
-            ourInstance = new FaceCalculator();
-        }
-        return ourInstance;
-    }
 
 
 

@@ -27,4 +27,8 @@ public class Settings {
     public static int VIDEO_WIDTH = 800;
     public static int VIDEO_HEIGHT = 600;
 
+    //Pattern使用的Bitmap高宽
+    public static int PATTERRN_WIDTH = 800;
+    public static int PATTERRN_HEIGHT = 600;
+
 }
