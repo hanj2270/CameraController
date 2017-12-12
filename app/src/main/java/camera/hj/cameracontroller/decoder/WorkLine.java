@@ -107,6 +107,7 @@ public class WorkLine {
                 if(ResDataQueue.size()+ProductDataQueue.size()>60){
                     Log.d("size","all gc start");
                     BitmapGC(getAllBitmap(ResDataQueue.size(),ResDataQueue));
+                    BitmapGC(getAllBitmap(ProductDataQueue.size(),ProductDataQueue));
                     System.gc();
                 }
             }
