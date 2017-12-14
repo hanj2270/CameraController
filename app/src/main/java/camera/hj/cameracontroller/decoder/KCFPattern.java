@@ -18,8 +18,8 @@ import static camera.hj.cameracontroller.constant.Settings.KCF_DATA_GROUP;
 public class KCFPattern extends AbstractPattern implements PosePattern.PoseListener{
 
     private boolean isReady=false;
-    private BlockingQueue<Bitmap> tempResblock=new ArrayBlockingQueue<Bitmap>(10);
-    private BlockingQueue<Bitmap> tempProblock=new ArrayBlockingQueue<Bitmap>(10);
+    private BlockingQueue<Bitmap> tempResblock=new ArrayBlockingQueue<Bitmap>(KCF_DATA_GROUP*2);
+    private BlockingQueue<Bitmap> tempProblock=new ArrayBlockingQueue<Bitmap>(KCF_DATA_GROUP*2);
     public KCFPattern(WorkLine workLine,WorkingFlag flag) {
         super(workLine,flag);
     }
@@ -59,7 +59,7 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
                         Log.e("Pattern error","flag wait error.");
                     }
                 }else {
-                    if(tempResblock.size()<5) {
+                    if(tempResblock.size()<KCF_DATA_GROUP) {
                         Collections.addAll(tempResblock, mWorkLine.getSources(Settings.KCF_DATA_GROUP));
                     }
                     flag.isPosWorking = true;
