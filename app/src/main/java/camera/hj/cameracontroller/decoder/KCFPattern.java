@@ -52,7 +52,7 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
     public void run() {
         while(true){
             synchronized (flag) {
-                if (!flag.isPosWorking||!isReady) {
+                if (flag.isPosWorking||!isReady) {
                     try {
                         flag.wait();
                     } catch (Exception e) {
@@ -83,17 +83,20 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
 
     @Override
     public void GetResult(int[] result) {
+        Bitmap temp=null;
         synchronized (flag) {
             if (tempProblock.size() > 0) {
-                Log.d("size","kcf Add"+tempProblock.size());
+                Log.d("size","kcf Add to Workline"+tempProblock.size());
                 mWorkLine.addProducts(tempProblock);
             }
-            Bitmap temp = mWorkLine.getSource();
+            temp = mWorkLine.getSource();
             flag.isPosWorking=true;
             flag.notifyAll();
-            init(mWorkLine.getSource(), result);
+        }
+        if(temp!=null) {
+            init(temp, result);
             draw(temp, result);
-            // TODO: 此处锁已经释放，直接将结果加入workline结果队列，依赖kcf速度快于pos特性，可能不安全 
+            // TODO: 此处锁已经释放，直接将结果加入workline结果队列，依赖kcf速度快于pos特性，可能不安全
             mWorkLine.addProduct(temp);
             isReady = true;
         }

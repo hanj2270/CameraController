@@ -26,7 +26,7 @@ public class PosePattern extends AbstractPattern {
     @Override
     public int[] update(Bitmap resource) {
         try {
-            Thread.sleep(100);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -40,6 +40,7 @@ public class PosePattern extends AbstractPattern {
     @Override
     public void run() {
         while(true){
+            Bitmap temp=null;
             synchronized (flag) {
                 if (!flag.isPosWorking) {
                     try {
@@ -48,14 +49,16 @@ public class PosePattern extends AbstractPattern {
                         Log.e("Pattern error","flag wait error.");
                     }
                 }else {
-                    Bitmap temp = mWorkLine.getSource();
+                    temp = mWorkLine.getSource();
                     flag.isPosWorking = false;
                     flag.notifyAll();
-                    result = update(temp);
-                    draw(temp,result);
-                    mWorkLine.addProduct(temp);
-                    mListener.GetResult(result);
                 }
+            }
+            if(temp!=null) {
+                result = update(temp);
+                draw(temp, result);
+                mWorkLine.addProduct(temp);
+                mListener.GetResult(result);
             }
         }
     }
