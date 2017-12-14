@@ -17,7 +17,6 @@ import static camera.hj.cameracontroller.constant.Settings.KCF_DATA_GROUP;
 
 public class KCFPattern extends AbstractPattern implements PosePattern.PoseListener{
 
-    private boolean isReady=false;
     private BlockingQueue<Bitmap> tempResblock=new ArrayBlockingQueue<Bitmap>(KCF_DATA_GROUP*2);
     private BlockingQueue<Bitmap> tempProblock=new ArrayBlockingQueue<Bitmap>(KCF_DATA_GROUP*2);
     public KCFPattern(WorkLine workLine,WorkingFlag flag) {
@@ -52,7 +51,7 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
     public void run() {
         while(true){
             synchronized (flag) {
-                if (flag.isPosWorking||!isReady) {
+                if (flag.isPosWorking||!flag.isKCFinitReady) {
                     try {
                         flag.wait();
                     } catch (Exception e) {
@@ -63,20 +62,21 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
                         Collections.addAll(tempResblock, mWorkLine.getSources(Settings.KCF_DATA_GROUP));
                     }
                     flag.isPosWorking = true;
+                    flag.isKCFinitReady=false;
                     flag.notifyAll();
-                    try{
-                        for(int i=0;i<KCF_DATA_GROUP;i++){
-                            Bitmap b=tempResblock.take();
-                            int[] result = update(b);
-                            draw(b,result);
-                            tempProblock.offer(b);
-                    }
-                    }catch (Exception e){
-//                      TODO:异常处理待优化，可能回收已处理数据
-                        Log.e("Pattern error","kcf update interrupt.");
-                        GCUtils.BitmapGC(tempResblock);
-                    }
                 }
+            }
+            try{
+                for(int i=0;i<KCF_DATA_GROUP;i++){
+                    Bitmap b=tempResblock.take();
+                    int[] result = update(b);
+                    draw(b,result);
+                    tempProblock.offer(b);
+                }
+            }catch (Exception e){
+//                      TODO:异常处理待优化，可能回收已处理数据
+                Log.e("Pattern error","kcf update interrupt.");
+                GCUtils.BitmapGC(tempResblock);
             }
         }
     }
@@ -90,7 +90,7 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
                 mWorkLine.addProducts(tempProblock);
             }
             temp = mWorkLine.getSource();
-            flag.isPosWorking=true;
+            flag.isKCFinitReady=true;
             flag.notifyAll();
         }
         if(temp!=null) {
@@ -98,7 +98,6 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
             draw(temp, result);
             // TODO: 此处锁已经释放，直接将结果加入workline结果队列，依赖kcf速度快于pos特性，可能不安全
             mWorkLine.addProduct(temp);
-            isReady = true;
         }
     }
 }

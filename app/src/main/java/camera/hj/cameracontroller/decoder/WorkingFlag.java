@@ -6,4 +6,5 @@ package camera.hj.cameracontroller.decoder;
 
 public class WorkingFlag {
     public boolean isPosWorking= true;
+    public boolean isKCFinitReady=false;
 }
