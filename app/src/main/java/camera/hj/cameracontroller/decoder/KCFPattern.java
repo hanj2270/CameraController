@@ -57,14 +57,10 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
                     } catch (Exception e) {
                         Log.e("Pattern error","flag wait error.");
                     }
-                }else {
-                    if(tempResblock.size()<KCF_DATA_GROUP) {
-                        Collections.addAll(tempResblock, mWorkLine.getSources(Settings.KCF_DATA_GROUP));
-                    }
-                    flag.isPosWorking = true;
-                    flag.isKCFinitReady=false;
-                    flag.notifyAll();
                 }
+                flag.isPosWorking = true;
+                flag.isKCFinitReady=false;
+                flag.notifyAll();
             }
             try{
                 for(int i=0;i<KCF_DATA_GROUP;i++){
@@ -90,6 +86,10 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
                 mWorkLine.addProducts(tempProblock);
             }
             temp = mWorkLine.getSource();
+            if(tempResblock.size()<KCF_DATA_GROUP) {
+                Collections.addAll(tempResblock, mWorkLine.getSources(Settings.KCF_DATA_GROUP));
+            }
+            flag.isPosWorking=true;
             flag.isKCFinitReady=true;
             flag.notifyAll();
         }
