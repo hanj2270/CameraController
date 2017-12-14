@@ -31,7 +31,7 @@ public class Settings {
     public static int PATTERRN_WIDTH = 800;
     public static int PATTERRN_HEIGHT = 600;
 
-    //每组数据（pose+kcf）数量
-    public final static int DATA_GROUP=9;
+    //pose结束后kcf每次获取的数据数量
+    public final static int KCF_DATA_GROUP=5;
 
 }

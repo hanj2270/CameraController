@@ -1,6 +1,7 @@
 package camera.hj.cameracontroller.decoder;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 /**
  * Created by T470S on 2017/12/12.
@@ -24,6 +25,11 @@ public class PosePattern extends AbstractPattern {
 
     @Override
     public int[] update(Bitmap resource) {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new int[0];
     }
 
@@ -39,6 +45,7 @@ public class PosePattern extends AbstractPattern {
                     try {
                         flag.wait();
                     } catch (Exception e) {
+                        Log.e("Pattern error","flag wait error.");
                     }
                 }else {
                     Bitmap temp = mWorkLine.getSource();

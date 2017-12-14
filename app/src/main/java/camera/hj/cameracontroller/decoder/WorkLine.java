@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingDeque;
 
@@ -43,10 +45,11 @@ public class WorkLine {
         }
     }
 
-    public void addProducts(ArrayList<Bitmap> bitmaps){
+    public void addProducts(Collection<Bitmap> bitmaps){
         for(Bitmap b:bitmaps){
             ProductDataQueue.offer(b);
         }
+        bitmaps.clear();
     }
 
     public Bitmap getSource(){
