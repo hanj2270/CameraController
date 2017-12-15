@@ -51,14 +51,13 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
     public void run() {
         while(true){
             synchronized (flag) {
-                if (flag.isPosWorking||!flag.isKCFinitReady) {
+                if (!flag.isKCFinitReady) {
                     try {
                         flag.wait();
                     } catch (Exception e) {
                         Log.e("Pattern error","flag wait error.");
                     }
                 }
-                flag.isPosWorking = true;
                 flag.isKCFinitReady=false;
                 flag.notifyAll();
             }
