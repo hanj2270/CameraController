@@ -14,8 +14,8 @@ import java.util.concurrent.BlockingDeque;
  */
 
 public class WorkLine {
-    ArrayBlockingQueue<Bitmap> ResDataQueue = new ArrayBlockingQueue<Bitmap>(1000);
-    ArrayBlockingQueue<Bitmap> ProductDataQueue = new ArrayBlockingQueue<Bitmap>(1000);
+    ArrayBlockingQueue<Bitmap> ResDataQueue = new ArrayBlockingQueue<Bitmap>(5000);
+    ArrayBlockingQueue<Bitmap> ProductDataQueue = new ArrayBlockingQueue<Bitmap>(5000);
 
     ArrayList<IPattern> patterns=new ArrayList<>();
 
@@ -46,6 +46,7 @@ public class WorkLine {
     }
 
     public void addProducts(Collection<Bitmap> bitmaps){
+        Log.d("size","Workline Product Add "+bitmaps.size());
         for(Bitmap b:bitmaps){
             ProductDataQueue.offer(b);
         }
