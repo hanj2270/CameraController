@@ -20,8 +20,9 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
     private class kcfFlag{
         boolean isKCFinitReady=false;
     }
-    private BlockingQueue<Bitmap> tempResblock=new ArrayBlockingQueue<Bitmap>(KCF_DATA_GROUP*2);
-    private BlockingQueue<Bitmap> tempProblock=new ArrayBlockingQueue<Bitmap>(KCF_DATA_GROUP*2);
+    public static ArrayBlockingQueue<Bitmap> tempResblock=new ArrayBlockingQueue<Bitmap>(KCF_DATA_GROUP*2);
+    public static ArrayBlockingQueue<Bitmap> tempProblock=new ArrayBlockingQueue<Bitmap>(KCF_DATA_GROUP*2);
+
     private kcfFlag mkcfFlag;
     public KCFPattern(WorkLine workLine,WorkingFlag flag) {
         super(workLine,flag);
@@ -55,10 +56,24 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
     @Override
     public void run() {
         while(true){
+
+            synchronized (flag) {
+                if (flag.isPosWorking) {
+                    try {
+                        mkcfFlag.wait();
+                    } catch (Exception e) {
+                        Log.e("Pattern error","flag wait error.");
+                    }
+                }
+                Collections.addAll(tempResblock,mWorkLine.getSources(Settings.KCF_DATA_GROUP));
+                flag.isPosWorking=false;
+                flag.notifyAll();
+            }
+
             synchronized (mkcfFlag) {
                 if (!mkcfFlag.isKCFinitReady) {
                     try {
-                        flag.wait();
+                        mkcfFlag.wait();
                     } catch (Exception e) {
                         Log.e("Pattern error","flag wait error.");
                     }
@@ -66,9 +81,10 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
                 mkcfFlag.isKCFinitReady=false;
                 mkcfFlag.notifyAll();
             }
+
             try{
                 Log.d("size","kcf update work start,res size="+tempResblock.size()+";pro size="+tempProblock.size());
-                for(int i=0;i<KCF_DATA_GROUP;i++){
+                for(int i=0;i<tempResblock.size();i++){
                     Bitmap b=tempResblock.take();
                     int[] result = update(b);
                     draw(b,result);
@@ -85,27 +101,15 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
     }
 
     @Override
-    public void GetResult(int[] result) {
-        Bitmap temp=null;
-        synchronized (flag) {
-            if (tempProblock.size() > 0) {
-                Log.d("size","kcf Add to Workline"+tempProblock.size());
-                mWorkLine.addProducts(tempProblock);
-            }
-            temp = mWorkLine.getSource();
-            if(tempResblock.size()<KCF_DATA_GROUP) {
-                Collections.addAll(tempResblock, mWorkLine.getSources(Settings.KCF_DATA_GROUP));
-            }
-            flag.isPosWorking=true;
-            flag.notifyAll();
+    public void GetResult(Bitmap posRes,int[] result) {
+        if (tempProblock.size() > 0) {
+            Log.d("size","kcf Add to Workline"+tempProblock.size());
+            mWorkLine.addProducts(tempProblock);
         }
 
         synchronized (mkcfFlag) {
-            if (temp != null) {
-                init(temp, result);
-                draw(temp, result);
-                // TODO: 此处锁已经释放，直接将结果加入workline结果队列，依赖kcf速度快于pos特性，可能不安全
-                mWorkLine.addProduct(temp);
+            if (posRes != null) {
+                init(posRes, result);
             }
             mkcfFlag.isKCFinitReady=true;
             mkcfFlag.notifyAll();
