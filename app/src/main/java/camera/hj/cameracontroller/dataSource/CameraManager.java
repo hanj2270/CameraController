@@ -18,6 +18,7 @@ import camera.hj.cameracontroller.decoder.KCFPattern;
 import camera.hj.cameracontroller.decoder.PosePattern;
 import camera.hj.cameracontroller.decoder.WorkLine;
 import camera.hj.cameracontroller.decoder.WorkingFlag;
+import camera.hj.cameracontroller.utils.IOUtils;
 import camera.hj.cameracontroller.utils.SizeUtils;
 import camera.hj.cameracontroller.utils.YUVToRGBHelper;
 
@@ -34,6 +35,8 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
     private Camera camera;
     private YUVToRGBHelper mConvertHelper;
     private Size optionSize;
+
+    private static long timerBefore=System.currentTimeMillis();
 
     private WorkLine WorkLine;
 
@@ -117,7 +120,9 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
                     Bitmap temp=WorkLine.play();
                     if(!temp.isRecycled()) {
                         Canvas canvas = bitmapSurface.getHolder().lockCanvas();
+                        IOUtils.TimeBlance(timerBefore);
                         canvas.drawBitmap(temp, 0.0f, 0.0f, new Paint());
+                        timerBefore=System.currentTimeMillis();
                         bitmapSurface.getHolder().unlockCanvasAndPost(canvas);
                         BitmapGC(temp);
                     }
