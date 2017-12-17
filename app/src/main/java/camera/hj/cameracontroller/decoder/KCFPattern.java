@@ -60,13 +60,13 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
             synchronized (flag) {
                 if (flag.isPosWorking) {
                     try {
-                        mkcfFlag.wait();
+                        flag.wait();
                     } catch (Exception e) {
                         Log.e("Pattern error","flag wait error.");
                     }
                 }
                 Collections.addAll(tempResblock,mWorkLine.getSources(Settings.KCF_DATA_GROUP));
-                flag.isPosWorking=false;
+                flag.isPosWorking=true;
                 flag.notifyAll();
             }
 
@@ -84,7 +84,8 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
 
             try{
                 Log.d("size","kcf update work start,res size="+tempResblock.size()+";pro size="+tempProblock.size());
-                for(int i=0;i<tempResblock.size();i++){
+                int res_num= tempResblock.size();
+                for(int i=0;i<res_num;i++){
                     Bitmap b=tempResblock.take();
                     int[] result = update(b);
                     draw(b,result);
