@@ -56,8 +56,6 @@ public class PosePattern extends AbstractPattern {
             if(temp!=null) {
                 result = update(temp);
                 mListener.GetResult(temp,result);
-                draw(temp, result);
-                mWorkLine.addProduct(temp);
             }
         }
     }

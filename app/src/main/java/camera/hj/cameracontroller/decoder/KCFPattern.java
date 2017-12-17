@@ -102,11 +102,6 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
 
     @Override
     public void GetResult(Bitmap posRes,int[] result) {
-        if (tempProblock.size() > 0) {
-            Log.d("size","kcf Add to Workline"+tempProblock.size());
-            mWorkLine.addProducts(tempProblock);
-        }
-
         synchronized (mkcfFlag) {
             if (posRes != null) {
                 init(posRes, result);
@@ -114,5 +109,12 @@ public class KCFPattern extends AbstractPattern implements PosePattern.PoseListe
             mkcfFlag.isKCFinitReady=true;
             mkcfFlag.notifyAll();
         }
+
+        draw(posRes, result);
+        if (tempProblock.size() > 0) {
+            Log.d("size","kcf Add to Workline"+tempProblock.size());
+            mWorkLine.addProducts(tempProblock);
+        }
+        mWorkLine.addProduct(posRes);
     }
 }
