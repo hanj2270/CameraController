@@ -5,6 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import camera.hj.cameracontroller.constant.Settings;
+
 /**
  * Created by NC040 on 2017/11/19.
  */
@@ -26,5 +28,16 @@ public class IOUtils {
             buf = bos.toByteArray();
         }
         return buf;
+    }
+
+    public static void TimeBlance(long LastFametime){
+        long timeBlank=System.currentTimeMillis()-LastFametime;
+        if(timeBlank<1000/ Settings.FrameRate){
+            try {
+                Thread.sleep(1000/Settings.FrameRate-timeBlank);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

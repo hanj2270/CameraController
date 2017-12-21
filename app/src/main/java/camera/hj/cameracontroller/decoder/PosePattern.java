@@ -42,29 +42,26 @@ public class PosePattern extends AbstractPattern {
         while(true){
             Bitmap temp=null;
             synchronized (flag) {
-                if (!flag.isPosWorking) {
+                if (flag.isPosWorking!=true) {
                     try {
                         flag.wait();
                     } catch (Exception e) {
                         Log.e("Pattern error","flag wait error.");
                     }
-                }else {
-                    temp = mWorkLine.getSource();
-                    flag.isPosWorking = false;
-                    flag.notifyAll();
                 }
+                temp = mWorkLine.getSource();
+                flag.isPosWorking=false;
+                flag.notifyAll();
             }
             if(temp!=null) {
                 result = update(temp);
-                draw(temp, result);
-                mWorkLine.addProduct(temp);
-                mListener.GetResult(result);
+                mListener.GetResult(temp,result);
             }
         }
     }
 
 
     interface PoseListener{
-        public void GetResult(int[] result);
+        public void GetResult(Bitmap posRes,int[] result);
     }
 }
