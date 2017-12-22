@@ -3,9 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SurfaceView
-        android:id="@+id/surfaceview"
+    <TextView
+        android:id="@+id/welcome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:text="欢迎"
         />
 </LinearLayout>
