@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -22,18 +21,17 @@ import camera.hj.cameracontroller.utils.AppManager;
 public class MainPageActivity extends FragmentActivity {
 
     private FragmentTabHost mTabHost;
-    private Class[] mFragmentArrays = {MyTrainFragment.class, SingleTrainFragment.class
+    private Class[] mFragmentArrays = {SingleTrainFragment.class, MyTrainFragment.class
             , TrainPlanFragment.class};
 
-    private String[] mTextArrays = {"首页", "证书", "应用", "设置"};
+    private String[] mTextArrays = {"单项训练", "健身计划", "我的"};
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppManager.getAppManager().addActivity(this);
-        setContentView(R.layout.activity_mainPage);
-
+        setContentView(R.layout.activity_mainpage);
         setTabHost();
     }
 
@@ -52,14 +50,25 @@ public class MainPageActivity extends FragmentActivity {
                 TabHost.TabSpec tabSpec = mTabHost.newTabSpec(mTextArrays[i])
                         .setIndicator(getTabItemView(i));
                 mTabHost.addTab(tabSpec, mFragmentArrays[i], null);
-                //todo: 设置Tab按钮背景
+                mTabHost.getTabWidget().getChildAt(i).getLayoutParams().height = 100;
+                //设置Tab按钮背景
+                mTabHost.getTabWidget().getChildAt(i)
+                        .setBackgroundResource(R.drawable.selector_tab_background);
 
             }
 
     }
 
     private View getTabItemView(int index) {
-        //todo:绘制图标背景
-        return null;
+        View view = LayoutInflater.from(this).inflate(R.layout.tab_item_layout, null);
+        TextView textView = (TextView) view.findViewById(R.id.textview);
+        textView.setText(mTextArrays[index]);
+        return view;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getAppManager().removeActivity(this);
     }
 }

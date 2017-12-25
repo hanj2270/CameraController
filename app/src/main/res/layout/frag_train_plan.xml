@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <TextView
-        android:id="@+id/welcome"
+        android:gravity="center"
+        android:id="@+id/train_plan_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="欢迎界面"
+        android:text="健身计划"
         android:textSize="50dp"
         />
 </LinearLayout>

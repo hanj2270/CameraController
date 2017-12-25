@@ -14,7 +14,7 @@ import camera.hj.cameracontroller.constant.Settings;
 import camera.hj.cameracontroller.dataSource.CameraManager;
 import camera.hj.cameracontroller.decoder.WorkLine;
 
-public class MainActivity extends BaseActivity{
+public class PushUpActivity extends BaseActivity{
     @BindView(R.id.cameraSurface)
     SurfaceView cameraSurface;
 
@@ -67,5 +67,10 @@ public class MainActivity extends BaseActivity{
         Settings.setVideoWidth(metrics.heightPixels);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        //// TODO: 合理关闭相机 
+        cameraManager.stop();
+        super.onDestroy();
+    }
 }

@@ -1,5 +1,6 @@
 package camera.hj.cameracontroller.dataSource;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -35,7 +36,7 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
     private Camera camera;
     private YUVToRGBHelper mConvertHelper;
     private Size optionSize;
-
+    private PlayThread mPlayThread;
     private static long timerBefore=System.currentTimeMillis();
 
     private WorkLine WorkLine;
@@ -54,7 +55,8 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
         posPattern.setOnPoseListener(kcfPattern);
         posPattern.start();
         kcfPattern.start();
-        new PlayThread().start();
+        mPlayThread=new PlayThread();
+        mPlayThread.start();
         cameraSurface.getHolder().addCallback(this);
     }
 
@@ -100,16 +102,25 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         if (null != camera) {
+            camera.setPreviewCallback(null);
             camera.stopPreview();
             camera.release();
             camera = null;
         }
+        //todo:GC全部未处理数据
     }
 
     @Override
     public void onPreviewFrame(byte[] bytes, Camera camera) {
         Bitmap bmpout= mConvertHelper.getBitmap(bytes);
         WorkLine.addSource(bmpout);
+    }
+
+    public void stop(){
+        //去除预览监听，防止在摄像头释放后调用崩溃
+        while(!mPlayThread.isInterrupted()){
+            mPlayThread.interrupt();
+        }
     }
 
     private class PlayThread extends Thread{

@@ -8,7 +8,7 @@ import android.widget.Toast;
 import java.util.Stack;
 
 import camera.hj.cameracontroller.CameraApplication;
-import camera.hj.cameracontroller.ui.activity.MainActivity;
+import camera.hj.cameracontroller.ui.activity.PushUpActivity;
 /**
  * 统一管理activity的内存，支持在“一键退出”中清除堆栈中的activity
  *
@@ -71,7 +71,7 @@ public class AppManager {
     public void restartApp() {
         finishAllActivity();
         Context context = CameraApplication.getInstance();
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, PushUpActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         android.os.Process.killProcess(android.os.Process.myPid());

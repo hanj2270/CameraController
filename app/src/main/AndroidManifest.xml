@@ -14,10 +14,6 @@
         android:supportsRtl="true"
         android:name=".CameraApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
         <activity android:name=".ui.activity.WelcomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -34,6 +30,10 @@
         <activity android:name=".ui.activity.MainPageActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".ui.activity.PushUpActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>
