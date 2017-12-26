@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Stack;
 
 import camera.hj.cameracontroller.CameraApplication;
-import camera.hj.cameracontroller.ui.activity.PushUpActivity;
+import camera.hj.cameracontroller.ui.activity.pushUp.PushUpActivity;
 /**
  * 统一管理activity的内存，支持在“一键退出”中清除堆栈中的activity
  *

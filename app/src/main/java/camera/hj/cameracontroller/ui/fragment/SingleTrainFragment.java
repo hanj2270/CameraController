@@ -7,7 +7,8 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import camera.hj.cameracontroller.R;
-import camera.hj.cameracontroller.ui.activity.PushUpActivity;
+import camera.hj.cameracontroller.ui.activity.pushUp.PushUpActivity;
+import camera.hj.cameracontroller.ui.activity.pushUp.PushUp_VideoActivity;
 
 /**
  * Created by NC040 on 2017/12/22.
@@ -38,7 +39,7 @@ public class SingleTrainFragment extends BaseFragment {
         int id = view.getId();
         switch (id) {
             case R.id.train_type_1:
-                Intent i1=new Intent(activityCtx,PushUpActivity.class);
+                Intent i1=new Intent(activityCtx,PushUp_VideoActivity.class);
                 startActivity(i1);
                 break;
             default:

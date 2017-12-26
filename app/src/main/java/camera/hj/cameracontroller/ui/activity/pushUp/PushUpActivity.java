@@ -1,4 +1,4 @@
-package camera.hj.cameracontroller.ui.activity;
+package camera.hj.cameracontroller.ui.activity.pushUp;
 
 
 import android.os.Bundle;
@@ -13,8 +13,9 @@ import camera.hj.cameracontroller.R;
 import camera.hj.cameracontroller.constant.Settings;
 import camera.hj.cameracontroller.dataSource.CameraManager;
 import camera.hj.cameracontroller.decoder.WorkLine;
+import camera.hj.cameracontroller.ui.activity.BaseActivity;
 
-public class PushUpActivity extends BaseActivity{
+public class PushUpActivity extends BaseActivity {
     @BindView(R.id.cameraSurface)
     SurfaceView cameraSurface;
 

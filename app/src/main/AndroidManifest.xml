@@ -30,8 +30,14 @@
         <activity android:name=".ui.activity.MainPageActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.activity.PushUpActivity"
+        <activity android:name=".ui.activity.pushUp.PushUpActivity"
             android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.activity.pushUp.PushUp_VideoActivity"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".ui.activity.pushUp.PushUP_ResultActivity"
+            android:screenOrientation="landscape">
         </activity>
 
     </application>
