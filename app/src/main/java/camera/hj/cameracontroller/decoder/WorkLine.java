@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingDeque;
 
+import camera.hj.cameracontroller.utils.GCUtils;
+
 /**
  * Created by NC040 on 2017/12/12.
  */
@@ -30,6 +32,11 @@ public class WorkLine {
             ourInstance = new WorkLine();
         }
         return ourInstance;
+    }
+
+    public void clear(){
+        GCUtils.BitmapGC(ResDataQueue);
+        GCUtils.BitmapGC(ProductDataQueue);
     }
 
     public void addSource(Bitmap data){

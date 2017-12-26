@@ -21,8 +21,8 @@ import camera.hj.cameracontroller.utils.AppManager;
 public class MainPageActivity extends FragmentActivity {
 
     private FragmentTabHost mTabHost;
-    private Class[] mFragmentArrays = {SingleTrainFragment.class, MyTrainFragment.class
-            , TrainPlanFragment.class};
+
+    private Class[] mFragmentArrays = {SingleTrainFragment.class,TrainPlanFragment.class,MyTrainFragment.class};
 
     private String[] mTextArrays = {"单项训练", "健身计划", "我的"};
 

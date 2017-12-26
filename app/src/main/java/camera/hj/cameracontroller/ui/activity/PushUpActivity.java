@@ -69,8 +69,7 @@ public class PushUpActivity extends BaseActivity{
 
     @Override
     protected void onDestroy() {
-        //// TODO: 合理关闭相机 
-        cameraManager.stop();
+        WorkLine.getInstance().clear();
         super.onDestroy();
     }
 }

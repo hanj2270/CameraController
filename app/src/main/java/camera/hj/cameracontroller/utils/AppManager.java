@@ -3,6 +3,7 @@ package camera.hj.cameracontroller.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Stack;
@@ -40,6 +41,7 @@ public class AppManager {
 
     //添加Activity到堆栈
     public void addActivity(Activity activity) {
+        Log.d("camera-activity",activity.getLocalClassName()+"added");
         if (activityStack == null) {
             activityStack = new Stack<Activity>();
         }
@@ -47,6 +49,7 @@ public class AppManager {
     }
 
     public void removeActivity(Activity activity) {
+        Log.d("camera-activity",activity.getLocalClassName()+"finish");
         if (activity == null) {
             return;
         }
@@ -82,6 +85,5 @@ public class AppManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addCategory(Intent.CATEGORY_HOME);
         activity.startActivity(intent);
-        Toast.makeText(activity, "安全服务已转入后台运行", Toast.LENGTH_SHORT).show();
     }
 }

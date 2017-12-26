@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.ImageFormat;
 import android.graphics.Paint;
 import android.hardware.Camera;
+import android.util.Log;
 import android.util.Size;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -36,7 +37,7 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
     private Camera camera;
     private YUVToRGBHelper mConvertHelper;
     private Size optionSize;
-    private PlayThread mPlayThread;
+    private boolean playFlag=true;
     private static long timerBefore=System.currentTimeMillis();
 
     private WorkLine WorkLine;
@@ -55,8 +56,7 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
         posPattern.setOnPoseListener(kcfPattern);
         posPattern.start();
         kcfPattern.start();
-        mPlayThread=new PlayThread();
-        mPlayThread.start();
+        new PlayThread().start();
         cameraSurface.getHolder().addCallback(this);
     }
 
@@ -102,6 +102,8 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         if (null != camera) {
+            stop();
+            Log.d("size","camera stop");
             camera.setPreviewCallback(null);
             camera.stopPreview();
             camera.release();
@@ -117,16 +119,19 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
     }
 
     public void stop(){
-        //去除预览监听，防止在摄像头释放后调用崩溃
-        while(!mPlayThread.isInterrupted()){
-            mPlayThread.interrupt();
+        //主线程睡一帧时间，避免play线程未能终止就回收surfaceView
+        playFlag=false;
+        try {
+            Thread.sleep(1000/ Settings.FrameRate);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
     private class PlayThread extends Thread{
         @Override
         public void run() {
-            while(true){
+            while(playFlag){
                 if(WorkLine.ready()) {
                     Bitmap temp=WorkLine.play();
                     if(!temp.isRecycled()) {
@@ -138,6 +143,9 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
                         BitmapGC(temp);
                     }
                 }
+            }
+            while(!this.isInterrupted()){
+                this.interrupt();
             }
         }
     }
