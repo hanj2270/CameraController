@@ -109,7 +109,6 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
             camera.release();
             camera = null;
         }
-        //todo:GC全部未处理数据
     }
 
     @Override
