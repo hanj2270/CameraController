@@ -9,12 +9,13 @@ import android.widget.TextView;
 import butterknife.BindView;
 import camera.hj.cameracontroller.R;
 import camera.hj.cameracontroller.ui.activity.BaseActivity;
+import camera.hj.cameracontroller.utils.AppManager;
 
 /**
  * Created by NC040 on 2017/12/26.
  */
 
-public class PushUP_ResultActivity extends BaseActivity {
+public class PushUP_ResultActivity extends BasePushUP_Activity {
 
     @BindView(R.id.return_bt)
     Button return_bt;
@@ -29,6 +30,7 @@ public class PushUP_ResultActivity extends BaseActivity {
 
     }
 
+
     @Override
     public void initToolBar() {
 
@@ -37,5 +39,10 @@ public class PushUP_ResultActivity extends BaseActivity {
     @Override
     public void loadData() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

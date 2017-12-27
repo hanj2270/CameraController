@@ -15,6 +15,7 @@
         android:name=".CameraApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.WelcomeActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +25,14 @@
         </activity>
 
         <activity android:name=".ui.activity.RegisterActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>
 
         <activity android:name=".ui.activity.MainPageActivity"
-            android:screenOrientation="portrait">
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light">
         </activity>
         <activity android:name=".ui.activity.pushUp.PushUpActivity"
             android:screenOrientation="portrait">

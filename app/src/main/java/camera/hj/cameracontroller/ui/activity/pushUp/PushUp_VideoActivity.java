@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,7 +19,7 @@ import camera.hj.cameracontroller.ui.activity.BaseActivity;
  * Created by NC040 on 2017/12/26.
  */
 
-public class PushUp_VideoActivity extends BaseActivity {
+public class PushUp_VideoActivity extends BasePushUP_Activity {
     @BindView(R.id.VideoPlayView)
     SurfaceView VideoPlayView;
 
@@ -34,6 +36,7 @@ public class PushUp_VideoActivity extends BaseActivity {
     public void initViews(Bundle savedInstanceState) {
 
     }
+
 
     @Override
     public void initToolBar() {

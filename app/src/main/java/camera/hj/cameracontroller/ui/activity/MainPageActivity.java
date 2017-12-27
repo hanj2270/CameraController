@@ -3,11 +3,15 @@ package camera.hj.cameracontroller.ui.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
-
+import butterknife.ButterKnife;
 import camera.hj.cameracontroller.R;
 import camera.hj.cameracontroller.ui.fragment.MyTrainFragment;
 import camera.hj.cameracontroller.ui.fragment.SingleTrainFragment;
@@ -32,8 +36,19 @@ public class MainPageActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         AppManager.getAppManager().addActivity(this);
         setContentView(R.layout.activity_mainpage);
+        ButterKnife.bind(this);
+        initToolBar();
         setTabHost();
     }
+
+    private void initToolBar() {
+        getActionBar().setDisplayHomeAsUpEnabled(false);// 禁止显示左箭头
+        getActionBar().setCustomView(LayoutInflater.from(this).inflate(R.layout.mainpage_title, null));
+        getActionBar().setDisplayShowCustomEnabled(true);
+        getActionBar().setDisplayShowHomeEnabled(false);
+        getActionBar().setDisplayShowTitleEnabled(true);
+    }
+
 
     private void setTabHost() {
             mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
@@ -70,5 +85,12 @@ public class MainPageActivity extends FragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         AppManager.getAppManager().removeActivity(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

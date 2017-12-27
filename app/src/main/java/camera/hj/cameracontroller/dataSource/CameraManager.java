@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import camera.hj.cameracontroller.constant.Settings;
+import camera.hj.cameracontroller.controller.event.PushUpToastEvent;
 import camera.hj.cameracontroller.decoder.KCFPattern;
 import camera.hj.cameracontroller.decoder.PosePattern;
 import camera.hj.cameracontroller.decoder.WorkLine;
@@ -23,6 +24,7 @@ import camera.hj.cameracontroller.decoder.WorkingFlag;
 import camera.hj.cameracontroller.utils.IOUtils;
 import camera.hj.cameracontroller.utils.SizeUtils;
 import camera.hj.cameracontroller.utils.YUVToRGBHelper;
+import de.greenrobot.event.EventBus;
 
 import static camera.hj.cameracontroller.utils.GCUtils.BitmapGC;
 
@@ -139,6 +141,8 @@ public class CameraManager implements SurfaceHolder.Callback, Camera.PreviewCall
                         canvas.drawBitmap(temp, 0.0f, 0.0f, new Paint());
                         timerBefore=System.currentTimeMillis();
                         bitmapSurface.getHolder().unlockCanvasAndPost(canvas);
+                        //发送方法通知ui线程更新toast
+                        EventBus.getDefault().post(new PushUpToastEvent(timerBefore+""));
                         BitmapGC(temp);
                     }
                 }
