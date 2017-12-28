@@ -13,6 +13,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import camera.hj.cameracontroller.R;
+import camera.hj.cameracontroller.controller.event.PushUpFinishEvent;
 import camera.hj.cameracontroller.ui.activity.BaseActivity;
 
 /**
@@ -63,5 +64,10 @@ public class PushUp_VideoActivity extends BasePushUP_Activity {
             default:
                 break;
         }
+    }
+
+
+    public void onEventMainThread(PushUpFinishEvent event){
+        this.finish();
     }
 }

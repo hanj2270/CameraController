@@ -1,25 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <TextView
         android:gravity="center"
-        android:id="@+id/push_up_result"
+        android:layout_marginTop="30dp"
+        android:id="@+id/push_up_result_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="训练结果"
-        android:textSize="50dp"
+        android:text="训练完成！"
+        android:textStyle="italic"
+        android:textColor="@color/TabBackColor"
+        android:textSize="30dp"
         />
 
+    <RelativeLayout
+        android:id="@+id/push_up_result_text_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/push_up_result_title">
+        <TextView
+            android:layout_marginStart="200dp"
+            style="@style/result_text_style"
+            android:id="@+id/push_up_result_text_start"
+            android:text="窄距俯卧撑" />
+
+        <TextView
+            android:layout_toRightOf="@id/push_up_result_text_start"
+            android:id="@+id/push_up_result_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            android:textColor="@color/TabBackColor"
+            android:textStyle="italic"
+            android:textSize="40dp" />
+
+        <TextView
+            android:layout_toRightOf="@id/push_up_result_num"
+            android:id="@+id/push_up_result_end"
+            android:text="个。"
+            style="@style/result_text_style" />
+        </RelativeLayout>>
+
+
+    <RelativeLayout
+        android:id="@+id/push_up_result_title_icon_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/push_up_result_text_layout">
+            <RelativeLayout
+            android:id="@+id/timer_icon_layout"
+            style="@style/icon_layout_style">
+                <ImageView
+                    android:id="@+id/timer_icon"
+                    style="@style/icon_image_style"
+                    android:src="@drawable/timer_icon"/>
+
+                    <TextView
+                        android:layout_below="@id/timer_icon"
+                        android:id="@+id/timer_text"
+                        style="@style/icon_text_style"
+                        android:text="计时"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/grade_icon_layout"
+                style="@style/icon_layout_style"
+                android:layout_toRightOf="@+id/timer_icon_layout">
+                <ImageView
+                    android:id="@+id/grade_icon"
+                    style="@style/icon_image_style"
+                    android:src="@drawable/grade_icon"/>
+
+                <TextView
+                    android:layout_below="@id/grade_icon"
+                    android:id="@+id/grade_text"
+                    style="@style/icon_text_style"
+                    android:text="得分"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/icon_layout_style"
+                android:layout_toRightOf="@+id/grade_icon_layout">
+                    <ImageView
+                        android:id="@+id/progress_icon"
+                        style="@style/icon_image_style"
+                        android:src="@drawable/progress_icon"/>
+                    <TextView
+                        android:layout_below="@id/progress_icon"
+                        android:id="@+id/progress_text"
+                        style="@style/icon_text_style"
+                        android:textColor="@color/red"
+                        android:text="进步"/>
+            </RelativeLayout>
+
+    </RelativeLayout>
+
     <Button
+        android:layout_below="@id/push_up_result_title_icon_layout"
         android:id="@+id/return_bt"
         android:text="训练完成"
         android:layout_gravity="center"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     />
 
-</LinearLayout>
+</RelativeLayout>

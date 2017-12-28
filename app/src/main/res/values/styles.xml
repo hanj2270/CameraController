@@ -21,4 +21,37 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
+    <style name="warp_content">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>>
+
+    <!--pushUpResult_Activity-->
+
+    <style name="result_text_style" parent="warp_content" >
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="icon_layout_style" parent="warp_content" >
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginStart">90dp</item>
+    </style>
+
+
+    <style name="icon_image_style">
+        <item name="android:layout_height">80sp</item>
+        <item name="android:layout_width">80sp</item>
+    </style>
+
+
+    <style name="icon_text_style" parent="warp_content">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:textColor">@color/TabBackColor</item>
+    </style>
+
 </resources>
