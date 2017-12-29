@@ -21,11 +21,15 @@ import de.greenrobot.event.EventBus;
  */
 
 public class PushUP_ResultActivity extends BasePushUP_Activity {
+    public final static String RESULT_TITLE="RESULT_TITLE";
     public final static String TIMER_RESULT="TIMER_RESULT";
-    public final static String PROGRESS_RESULT="TIMER_RESULT";
-    public final static String GRADE_RESULT="TIMER_RESULT";
+    public final static String PROGRESS_RESULT="PROGRESS_RESULT";
+    public final static String GRADE_RESULT="GRADE_RESULT";
     @BindView(R.id.return_bt)
     Button return_bt;
+
+    @BindView(R.id.push_up_result_num)
+    TextView push_up_result_num;
 
     @BindView(R.id.timer_text)
     TextView timer_text;
@@ -44,8 +48,10 @@ public class PushUP_ResultActivity extends BasePushUP_Activity {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
+        String grade=getIntent().getStringExtra(GRADE_RESULT);
+        grade_text.setText(grade);
+        push_up_result_num.setText(grade);
         timer_text.setText(getIntent().getStringExtra(TIMER_RESULT));
-        grade_text.setText(getIntent().getStringExtra(GRADE_RESULT));
         progress_text.setText(getIntent().getStringExtra(PROGRESS_RESULT));
     }
 
