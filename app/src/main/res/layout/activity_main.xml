@@ -46,14 +46,13 @@
 
 
 
-    <TextView
-        android:id="@+id/result_text"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/test_result_bt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cameraSurface"
+        android:layout_below="@id/BitmapSurface"
         android:textColor="@color/red"
-        android:text="@string/NoFace"
-        android:visibility="gone"/>
+        android:text="获取结果" />
 
 </RelativeLayout>
 

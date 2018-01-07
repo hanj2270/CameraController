@@ -8,9 +8,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import camera.hj.cameracontroller.R;
+import camera.hj.cameracontroller.constant.UrlConstant;
 import camera.hj.cameracontroller.controller.event.PushUpFinishEvent;
 import camera.hj.cameracontroller.ui.activity.BaseActivity;
 import camera.hj.cameracontroller.utils.AppManager;
@@ -19,7 +22,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by NC040 on 2017/12/26.
  */
-
+@Route(path = UrlConstant.UI_PATH_RS, name = "运动后的结果")
 public class PushUP_ResultActivity extends BasePushUP_Activity {
     public final static String RESULT_TITLE="RESULT_TITLE";
     public final static String TIMER_RESULT="TIMER_RESULT";

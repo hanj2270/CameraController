@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -80,6 +81,7 @@
                     android:layout_below="@id/grade_icon"
                     android:id="@+id/grade_text"
                     style="@style/icon_text_style"
+                    android:layout_marginStart="25dp"
                     android:text="得分"/>
             </RelativeLayout>
 
@@ -95,19 +97,26 @@
                         android:id="@+id/progress_text"
                         style="@style/icon_text_style"
                         android:textColor="@color/red"
+                        android:layout_marginStart="25dp"
                         android:text="进步"/>
             </RelativeLayout>
 
     </RelativeLayout>
 
+
+
     <Button
         android:layout_below="@id/push_up_result_title_icon_layout"
         android:id="@+id/return_bt"
-        android:text="训练完成"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    />
+        android:layout_height="40dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="@dimen/video_btn_margin"
+        android:layout_marginStart="@dimen/video_btn_margin"
+        android:textColor="@color/colorComplete"
+        android:background="@color/colorTitleBg"
+        android:text="训练完成"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </RelativeLayout>

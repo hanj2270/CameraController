@@ -6,14 +6,19 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import camera.hj.cameracontroller.R;
+import camera.hj.cameracontroller.constant.PageConstant;
 import camera.hj.cameracontroller.constant.Settings;
 import camera.hj.cameracontroller.constant.UrlConstant;
 import camera.hj.cameracontroller.controller.event.PushUpFinishEvent;
@@ -39,8 +44,8 @@ public class PushUpActivity extends BaseActivity implements CountResult.ResultLi
     @BindView(R.id.square)
     ImageView square;
 
-    @BindView(R.id.result_text)
-    TextView result_text;
+    @BindView(R.id.test_result_bt)
+    Button test_result_bt;
 
     private CameraManager cameraManager;
     private static boolean CurrentStatus=false;
@@ -98,6 +103,16 @@ public class PushUpActivity extends BaseActivity implements CountResult.ResultLi
         startActivity(i);
     }
 
+    //传给result活动的数据
+    public void skipToResult(String time,String grade,String progress){
+        ARouter.getInstance()
+                .build(UrlConstant.UI_PATH_RS)
+                .withString(TIMER_RESULT, time)
+                .withString(GRADE_RESULT,grade)
+                .withString(PROGRESS_RESULT,progress)
+                .navigation();
+    }
+
     //获取到PlayThread的结果并展示
     public void onEventMainThread(PushUpToastEvent event) {
         String msg = "计数："+event.getMsg();
@@ -107,5 +122,18 @@ public class PushUpActivity extends BaseActivity implements CountResult.ResultLi
 
     public void onEventMainThread(PushUpFinishEvent event){
         this.finish();
+    }
+
+
+    @OnClick({R.id.test_result_bt})
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.test_result_bt:
+                skipToResult("2:34","99","45");
+                break;
+            default:
+                break;
+        }
     }
 }
