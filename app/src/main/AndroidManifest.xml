@@ -34,8 +34,7 @@
 
         <activity android:name=".ui.activity.MainPageActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light">
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.activity.pushUp.PushUpActivity"
             android:screenOrientation="portrait">
