@@ -4,23 +4,31 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/train_type_1"
-        android:src="@drawable/train_pic_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fg_main_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/person_info_margin"
+        android:layout_marginStart="@dimen/person_info_margin" />
 
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/train_type_2"
-        android:src="@drawable/train_pic_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+
+    <!--<ImageView-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginStart="5dp"-->
+        <!--android:layout_marginEnd="5dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:id="@+id/train_type_1"-->
+        <!--android:src="@drawable/train_pic_1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"/>-->
+
+    <!--<ImageView-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginStart="5dp"-->
+        <!--android:layout_marginEnd="5dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:id="@+id/train_type_2"-->
+        <!--android:src="@drawable/train_pic_2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"/>-->
 </LinearLayout>
