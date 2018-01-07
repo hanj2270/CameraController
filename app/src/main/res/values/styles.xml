@@ -1,16 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!--使用actionBar，并且无标题-->
-        <!--<item name="android:windowNoTitle">true</item>-->
-        <!--<item name="windowActionBar">false</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <!--&lt;!&ndash;设置toolbar的风格&ndash;&gt;-->
-        <!--<item name="actionOverflowMenuStyle">@style/baseToolbarStyle</item>-->
+        <item name="actionOverflowMenuStyle">@style/baseToolbarStyle</item>
        <!--后续动态模式ui切换时可以使用-->
         <!--<item name="android:actionBarStyle" >@style/myActionBarStyle</item>-->
     </style>

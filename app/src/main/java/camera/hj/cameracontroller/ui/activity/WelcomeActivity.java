@@ -70,21 +70,6 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        final long start= System.currentTimeMillis();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while(true){
-//                    if(System.currentTimeMillis()-start>2000) {
-//                        Message startNext = new Message();
-//                        startNext.what = 1;
-//                        mHandler.sendMessage(startNext);
-//                        break;
-//                    }
-//                }
-//            }
-//        }).start();
-
     }
 
 
