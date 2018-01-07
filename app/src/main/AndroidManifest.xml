@@ -36,6 +36,14 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>
+
+        <!--抽屉导航相关-->
+        <activity android:name=".ui.activity.navigation.PersonInfoActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <!--俯卧撑训练相关-->
         <activity android:name=".ui.activity.pushUp.PushUpActivity"
             android:screenOrientation="portrait">
         </activity>

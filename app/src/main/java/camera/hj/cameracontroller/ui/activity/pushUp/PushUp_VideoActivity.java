@@ -10,16 +10,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import camera.hj.cameracontroller.R;
+import camera.hj.cameracontroller.constant.UrlConstant;
 import camera.hj.cameracontroller.controller.event.PushUpFinishEvent;
 import camera.hj.cameracontroller.ui.activity.BaseActivity;
 
 /**
  * Created by NC040 on 2017/12/26.
  */
-
+@Route(path = UrlConstant.UI_PATH_PLAY, name = "播放视频页面")
 public class PushUp_VideoActivity extends BasePushUP_Activity {
     @BindView(R.id.VideoPlayView)
     SurfaceView VideoPlayView;

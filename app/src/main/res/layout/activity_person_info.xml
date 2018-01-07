@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTitleBg"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/api_toolBar"
+        style="@style/CustomToolbarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorTitleBg"
+        app:navigationIcon="@drawable/ic_chevron_left"
+        app:title="@string/text_title_personInfo"
+        app:titleTextColor="@color/colorWhite" />
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/person_info_viewHeight"
+        android:layout_marginEnd="@dimen/person_info_margin"
+        android:layout_marginStart="@dimen/person_info_margin"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/person_info_card_radius"
+        app:cardElevation="@dimen/person_info_card_elevation"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+                <TableRow android:layout_marginStart="@dimen/layout_marginLeft">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_account"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextTitle"
+                        android:textSize="@dimen/all_textSize_0" />
+
+                    <TextView
+                        android:id="@+id/api_tv_accountValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/person_info_marginStart"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextTitle1"
+                        android:textSize="@dimen/all_textSize_1" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_marginStart="@dimen/layout_marginLeft"
+                    android:layout_marginTop="@dimen/person_info_marginTop">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_email"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextTitle"
+                        android:textSize="@dimen/all_textSize_0" />
+
+                    <TextView
+                        android:id="@+id/api_tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/person_info_marginStart"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextTitle1"
+                        android:textSize="@dimen/all_textSize_1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginStart="@dimen/layout_marginLeft"
+                    android:layout_marginTop="@dimen/person_info_marginTop">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_role"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextTitle"
+                        android:textSize="@dimen/all_textSize_0" />
+
+                    <TextView
+                        android:id="@+id/api_tv_roleValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/person_info_marginStart"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextTitle1"
+                        android:textSize="@dimen/all_textSize_1" />
+                </TableRow>
+            </TableLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</android.support.constraint.ConstraintLayout>
