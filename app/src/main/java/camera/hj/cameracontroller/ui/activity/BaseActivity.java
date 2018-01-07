@@ -38,6 +38,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         initViews(savedInstanceState);
         //初始化ToolBar
         initToolBar();
+        //加载控制数据
         loadData();
         AppManager.getAppManager().addActivity(this);
     }

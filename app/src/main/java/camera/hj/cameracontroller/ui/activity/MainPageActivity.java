@@ -11,8 +11,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import butterknife.ButterKnife;
 import camera.hj.cameracontroller.R;
+import camera.hj.cameracontroller.constant.UrlConstant;
 import camera.hj.cameracontroller.ui.fragment.MyTrainFragment;
 import camera.hj.cameracontroller.ui.fragment.SingleTrainFragment;
 import camera.hj.cameracontroller.ui.fragment.TrainPlanFragment;
@@ -21,7 +25,7 @@ import camera.hj.cameracontroller.utils.AppManager;
 /**
  * Created by NC040 on 2017/12/21.
  */
-
+@Route(path = UrlConstant.UI_PATH_MAIN,name = "首页")
 public class MainPageActivity extends FragmentActivity {
 
     private FragmentTabHost mTabHost;

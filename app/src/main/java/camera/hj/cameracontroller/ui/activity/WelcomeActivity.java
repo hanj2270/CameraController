@@ -11,10 +11,13 @@ import org.reactivestreams.Subscription;
 
 import camera.hj.cameracontroller.R;
 import camera.hj.cameracontroller.constant.NumConstant;
+import camera.hj.cameracontroller.constant.PageConstant;
+import camera.hj.cameracontroller.constant.UrlConstant;
 import camera.hj.cameracontroller.utils.RxCountDown;
 
 /**
  * Created by NC040 on 2017/12/21.
+ * 欢迎首页
  */
 
 public class WelcomeActivity extends BaseActivity {
@@ -80,6 +83,7 @@ public class WelcomeActivity extends BaseActivity {
             switch (msg.what){
                 case 1:
                     Intent i=new Intent(WelcomeActivity.this,RegisterActivity.class);
+                    i.putExtra(PageConstant.TARGET_PAGE_PATH, UrlConstant.UI_PATH_MAIN );
                     startActivity(i);
                     finish();
             }
