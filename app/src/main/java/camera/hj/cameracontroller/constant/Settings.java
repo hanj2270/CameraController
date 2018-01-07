@@ -8,7 +8,7 @@ public class Settings {
 
 
     //码率
-    public final static int FrameRate = 15;
+    public final static int FrameRate = 25;
 
     public static void setVideoWidth(int videoWidth) {
         VIDEO_WIDTH = videoWidth;
@@ -27,6 +27,11 @@ public class Settings {
     public static int PATTERRN_HEIGHT = 600;
 
     //pose结束后kcf每次获取的数据数量
-    public final static int KCF_DATA_GROUP=5;
+    public final static int KCF_DATA_GROUP=40;
+
+    /**
+     * 当前登录的帐号信息
+     */
+    String LOGIN_ACCOUNT="loginAccount";
 
 }

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-
-
     <color name="red">#900</color>
     <color name="green">#090</color>
     <color name="blue">#009</color>
@@ -28,5 +23,26 @@
     <color name="transparent">#00000000</color>
     <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
     <color name="viewfinder_mask">#60000000</color>
+
+
+
+    <color name="colorPrimary">#36A6D0</color>
+    <color name="colorPrimaryDark">#EE7E75</color>
+    <color name="colorAccent">#36A6D0</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTitleBg">#E8554A</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorTextTitle">#546E7A</color>
+    <color name="colorTextTitle1">#263238</color>
+    <color name="colorTvMainBg">#1B1A19</color>
+
+    <color name="gray1">#B2B2B4</color>
+    <color name="colorComplete">#00E1E1</color>
+
+
+    <color name="colorScreen2">#FF8315</color>
+    <color name="colorScreen3">#00E140</color>
+    <color name="colorScreen4">#00A6DD</color>
+
 
 </resources>

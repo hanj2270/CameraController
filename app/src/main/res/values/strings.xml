@@ -1,5 +1,31 @@
 <resources>
-    <string name="app_name">CameraController</string>
+    <string name="app_name">楚动</string>
     <string name="NoFace">目前检测结果：未检测到人脸</string>
     <string name="FoundFace">目前检测结果：发现人脸</string>
+
+    <!--MainActivity-->
+    <string name="drawerLayout_open">open</string>
+    <string name="drawerLayout_close">close</string>
+    <string name="text_menu_info">我的信息</string>
+    <string name="text_menu_main">单项训练</string>
+    <string name="text_menu_plan">训练计划</string>
+    <string name="text_menu_exit">退出</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <!--个人登录页面-->
+    <string name="et_hint_account">请输入管理账号</string>
+    <string name="et_hint_pwd">请输入密码</string>
+    <string name="text_login">登录</string>
+    <string name="text_register">注册</string>
+
+    <!---个人信息页面-->
+    <string name="text_title_personInfo">个人信息</string>
+    <string name="text_account">用户名</string>
+    <string name="text_role">角&#160;&#160;&#160;&#160;色</string>
+    <string name="text_email">邮&#160;&#160;&#160;&#160;箱</string>
+    <string name="text_plan_ok">训练完成!</string>
+
+    <string name="text_video_play">播放</string>
+    <string name="text_video_pause">暂停</string>
+    <string name="text_sport_start">开始</string>
 </resources>

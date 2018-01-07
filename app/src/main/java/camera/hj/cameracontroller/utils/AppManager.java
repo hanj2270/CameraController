@@ -3,6 +3,9 @@ package camera.hj.cameracontroller.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
 import java.util.Stack;
@@ -84,5 +87,20 @@ public class AppManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addCategory(Intent.CATEGORY_HOME);
         activity.startActivity(intent);
+    }
+
+
+    /**
+     * 将Fragment添加Activity
+     *
+     * @param fragmentManager
+     * @param fragment
+     * @param frameId
+     */
+    public static void addFragmentToActivity(FragmentManager fragmentManager, Fragment fragment,
+                                             int frameId) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(frameId, fragment);
+        transaction.commit();
     }
 }

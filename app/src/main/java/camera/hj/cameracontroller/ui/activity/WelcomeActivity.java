@@ -6,7 +6,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import camera.hj.cameracontroller.R;
+import camera.hj.cameracontroller.constant.NumConstant;
+import camera.hj.cameracontroller.utils.RxCountDown;
 
 /**
  * Created by NC040 on 2017/12/21.
@@ -21,7 +26,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-
+        setBarStatus(true);
     }
 
     @Override
@@ -31,6 +36,29 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void loadData() {
+        RxCountDown.countDown(NumConstant.LOGO_SHOW_TIME).compose(this.<Integer>bindToLifecycle()).subscribe(new Subscriber<Integer>() {
+            @Override
+            public void onSubscribe(Subscription s) {
+                s.request(Long.MAX_VALUE);
+            }
+
+            @Override
+            public void onNext(Integer integer) {
+
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                Message startNext = new Message();
+                startNext.what = 1;
+                mHandler.sendMessage(startNext);
+            }
+        });
         mHandler=new WelcomeHandler();
     }
 
@@ -42,20 +70,20 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        final long start= System.currentTimeMillis();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    if(System.currentTimeMillis()-start>2000) {
-                        Message startNext = new Message();
-                        startNext.what = 1;
-                        mHandler.sendMessage(startNext);
-                        break;
-                    }
-                }
-            }
-        }).start();
+//        final long start= System.currentTimeMillis();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while(true){
+//                    if(System.currentTimeMillis()-start>2000) {
+//                        Message startNext = new Message();
+//                        startNext.what = 1;
+//                        mHandler.sendMessage(startNext);
+//                        break;
+//                    }
+//                }
+//            }
+//        }).start();
 
     }
 
@@ -68,6 +96,7 @@ public class WelcomeActivity extends BaseActivity {
                 case 1:
                     Intent i=new Intent(WelcomeActivity.this,RegisterActivity.class);
                     startActivity(i);
+                    finish();
             }
         }
     }

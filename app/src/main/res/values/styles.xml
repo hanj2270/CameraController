@@ -2,10 +2,15 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--使用actionBar，并且无标题-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--&lt;!&ndash;设置toolbar的风格&ndash;&gt;-->
+        <!--<item name="actionOverflowMenuStyle">@style/baseToolbarStyle</item>-->
        <!--后续动态模式ui切换时可以使用-->
         <!--<item name="android:actionBarStyle" >@style/myActionBarStyle</item>-->
     </style>
@@ -52,6 +57,35 @@
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_marginStart">20dp</item>
         <item name="android:textColor">@color/TabBackColor</item>
+    </style>
+
+
+    <style name="FullScreenTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--设置toolbar信息-->
+    <style name="baseToolbarStyle" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+        <item name="android:paddingRight">5dp</item>
+        <!-- 弹出层背景颜色 -->
+        <item name="android:popupBackground">@color/colorWhite</item>
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">3dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+        <!-- 设置弹出菜单文字颜色 -->
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <!--自定义toolbar信息,使得toolbar左边的图片没有padding距离-->
+    <style name="CustomToolbarStyle" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
     </style>
 
 </resources>

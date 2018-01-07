@@ -12,4 +12,38 @@
     <dimen name="icon_text_left_margin">16dp</dimen>
     <dimen name="icon_text_top_margin">16dp</dimen>
     <dimen name="icon_text_size">30dp</dimen>
+
+
+    <dimen name="all_textSize_0">14sp</dimen>
+
+    <dimen name="all_textSize_1">18sp</dimen>
+    <!--侧滑菜单的头部信息-->
+    <dimen name="main_head_view_height">172dp</dimen>
+    <dimen name="main_head_view_iv_size">64dp</dimen>
+    <dimen name="main_head_view_tv_margin">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--LoginActivity页面的信息-->
+    <dimen name="login_view_marginTop">16dp</dimen>
+    <dimen name="login_view_marginStart">16dp</dimen>
+    <dimen name="login_view_marginEnd">16dp</dimen>
+    <dimen name="login_et_height">48dp</dimen>
+    <dimen name="et_text_paddingStart">3dp</dimen>
+    <dimen name="login_logo_marginTop">134dp</dimen>
+    <!--登录按钮的信息-->
+    <dimen name="login_btn_radius">16dp</dimen>
+    <dimen name="login_btn_marginTop">32dp</dimen>
+
+    <dimen name="person_info_marginTop">12dp</dimen>
+    <dimen name="layout_marginLeft">32dp</dimen>
+    <dimen name="person_info_viewHeight">240dp</dimen>
+    <dimen name="person_info_marginStart">16dp</dimen>
+    <!--个人信息的边距-->
+    <dimen name="person_info_margin">16dp</dimen>
+    <!--阴影卡片的弧度-->
+    <dimen name="person_info_card_radius">16dp</dimen>
+    <dimen name="person_info_card_elevation">10dp</dimen>
+
+    <!--视频播放的信息-->
+    <dimen name="video_btn_margin">16dp</dimen>
 </resources>
