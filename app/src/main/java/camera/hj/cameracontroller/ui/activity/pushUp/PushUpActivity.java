@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import butterknife.BindView;
 import camera.hj.cameracontroller.R;
 import camera.hj.cameracontroller.constant.Settings;
+import camera.hj.cameracontroller.constant.UrlConstant;
 import camera.hj.cameracontroller.controller.event.PushUpFinishEvent;
 import camera.hj.cameracontroller.controller.event.PushUpToastEvent;
 import camera.hj.cameracontroller.dataSource.CameraManager;
@@ -25,7 +28,7 @@ import static camera.hj.cameracontroller.controller.event.IEvent.EVENT_TAG;
 import static camera.hj.cameracontroller.ui.activity.pushUp.PushUP_ResultActivity.GRADE_RESULT;
 import static camera.hj.cameracontroller.ui.activity.pushUp.PushUP_ResultActivity.PROGRESS_RESULT;
 import static camera.hj.cameracontroller.ui.activity.pushUp.PushUP_ResultActivity.TIMER_RESULT;
-
+@Route(path = UrlConstant.UI_PATH_SPORT, name = "开始运动")
 public class PushUpActivity extends BaseActivity implements CountResult.ResultListener{
     @BindView(R.id.cameraSurface)
     SurfaceView cameraSurface;

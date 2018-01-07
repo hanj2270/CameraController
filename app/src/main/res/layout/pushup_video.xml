@@ -1,20 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.pushUp.PushUp_VideoActivity">
 
-
-    <SurfaceView
-        android:id="@+id/VideoPlayView"
-        android:layout_gravity="center"
+    <RelativeLayout
+        android:id="@+id/aps_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="290dp"/>
+        android:layout_height="35dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/aps_iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_chevron_left" />
+
+        <TextView
+            android:id="@+id/aps_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:textColor="@color/colorComplete"
+            android:gravity="center"
+            android:text="" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        app:layout_constraintTop_toBottomOf="@+id/aps_top_layout"
+        android:id="@+id/aps_layout_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="50dp">
+
+        <VideoView
+            android:id="@+id/aps_videoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/aps_iv_init"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/aps_iv_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_play" />
+    </RelativeLayout>
 
     <Button
-        android:id="@+id/startButton"
-        android:text="开始"
-        android:layout_gravity="center"
+        android:id="@+id/aps_btn_play"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-        />
-</LinearLayout>
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="@dimen/video_btn_margin"
+        android:layout_marginStart="@dimen/video_btn_margin"
+        android:textColor="@color/colorComplete"
+        android:background="@color/colorTitleBg"
+        android:text="@string/text_sport_start"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

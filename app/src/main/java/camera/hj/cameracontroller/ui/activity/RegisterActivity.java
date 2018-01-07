@@ -91,8 +91,10 @@ public class RegisterActivity extends BaseActivity {
      * 点击登录
      */
     private void clickLogin() {
-        String accountValue = etAccount.getText().toString().trim();
-        String pwdValue = etPwd.getText().toString().trim();
+//        String accountValue = etAccount.getText().toString().trim();
+//        String pwdValue = etPwd.getText().toString().trim();
+        String accountValue = "ss";
+       String pwdValue = "ss";
         if (TextUtils.isEmpty(accountValue)) {
             ToastUtil.showToast(getApplicationContext(), "用户名不能为空");
             return;

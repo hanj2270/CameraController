@@ -48,6 +48,8 @@
             android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.activity.pushUp.PushUp_VideoActivity"
+            android:theme="@style/FullScreenTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape">
         </activity>
         <activity android:name=".ui.activity.pushUp.PushUP_ResultActivity"
